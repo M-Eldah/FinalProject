@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+.MainButton{
+    border-width: 0px;
+    background-color: #e70e02;
+    color: aliceblue;
+}
+.MainButton:hover{
+    background-color: #bc0900;
+}
+.MainButton:active{
+    background-color: #8a0700;
+}

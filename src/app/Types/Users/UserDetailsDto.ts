@@ -1,12 +1,12 @@
-export interface UserDetailsDTO {
-    userName: string;
-    phone: string;
-    email: string;
-    bookmarks: UserChildBookmarkDTO[];
-    notifications: UserChildNotificationDTO[];
-    ratings: UserChildRatingDTO[];
-    requests: UserChildRequestDTO[];
-    services: UserChildServicesDTO[];
+export class UserDetailsDTO {
+    userName: string ="";
+    phone: string="";
+    email: string="";
+    bookmarks: UserChildBookmarkDTO[]|undefined;
+    notifications: UserChildNotificationDTO[]|undefined;
+    ratings: UserChildRatingDTO[]|undefined;
+    requests: UserChildRequestDTO[]|undefined;
+    services: UserChildServicesDTO[]|undefined;
 }
 
 export interface UserChildBookmarkDTO {

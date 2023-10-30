@@ -45,6 +45,7 @@ export class RegisterComponent {
       {
         next:(Utoken:any)=>
         {
+          console.log(Utoken["usertoken"]);
           this.helper.Store("Token",Utoken["usertoken"]);
         },
         error:(error)=>{

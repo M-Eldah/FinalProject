@@ -9,7 +9,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
     CommonModule
   ],
   exports:[
-    NavbarComponent
+    NavbarComponent,
   ]
 })
 export class SharedcomponentModule { }

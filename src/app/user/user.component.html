@@ -2,41 +2,35 @@
 <div class="row">
     <div class="d-flex flex-column p-3 col-2" [style.height.px]="menulength" style="background-color:#e8eaea ;">
         <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+          <li (click)="changeInfrence(0,$event)" class="navItem">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-              Home
-            </a>
+                Details
           </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
+          <li (click)="changeInfrence(1,$event)" class="navItem">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
+                Services
+          </li >
+          <li (click)="changeInfrence(2,$event)" class="navItem">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-              Orders
-            </a>
+              User requests
           </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
+          <li (click)="changeInfrence(3,$event)" class="navItem">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-              Products
-            </a>
+              Requests
           </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
+          <li (click)="changeInfrence(4,$event)" class="navItem">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-              Customers
-            </a>
+              Notifications
+          </li>
+          <li (click)="changeInfrence(5,$event)" class="navItem">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+              BookMarks
           </li>
         </ul>
     </div>
-    <div class="col-10">
-        <router-outlet >
-
-        </router-outlet>
+    
+    <div class="col-10" *ngIf="UserDetails">
+      <app-userDetail [UserDetails]="UserDetails" *ngIf="x==1"></app-userDetail>
+      <app-user-requests *ngIf="x==2" [userRequests]="UserDetails.userRequests"></app-user-requests>
     </div>
 </div>

@@ -1,26 +1,22 @@
 <app-navbar></app-navbar>
-<!-- Pills navs -->
-<div class="row d-flex justify-content-center" style="margin: 0px;">
-    <div class="d-flex justify-content-around" style="margin-top: 50px; margin-bottom: 50px; width: 70%;">
-      <button type="button" class="btn btn-primary LoginButton MainButton">
-      <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" [routerLink]="['/Login']" role="tab"
-      aria-controls="pills-login" aria-selected="true">Login</a>
-      </button>
-    
-      <button type="button" class="btn btn-light LoginButton">
-        <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" [routerLink]="['/Login/Register']" role="tab"
-        aria-controls="pills-login" aria-selected="true">Register</a>
-      </button>
-    </div>
-</div>
-  
-  
-  <!-- Pills navs -->
-  
-  <!-- Pills content -->
+<!-- Pills content -->
   <div class="row d-flex" style="margin: 0px;">
     <form class="row d-flex justify-content-center w-100" [formGroup]="Loginform">
-          <div class="w-75 p-3 ">
+      <!-- Pills navs -->
+      <div class="row d-flex justify-content-center" style="margin: 0px;">
+        <div class="d-flex " style="margin-top: 50px; margin-bottom: 50px; width: 25%; height: 10px;">
+          <button type="button " class="LoginButton MainButton buttonLeft">
+          <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" [routerLink]="['/Login']" role="tab"
+          aria-controls="pills-login" aria-selected="true">Login</a>
+          </button>
+          <button type="button" class="buttonRight LoginButton ">
+            <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" [routerLink]="['/Login/Register']" role="tab"
+            aria-controls="pills-login" aria-selected="true">Register</a>
+          </button>
+        </div>
+      </div>
+       <!-- Pills navs -->
+          <div class="w-25 p-3 ">
               <!-- Email input -->
               <div class="form-outline mb-4">
                   <input type="email" id="loginName" class="form-control" formControlName="userName"/>

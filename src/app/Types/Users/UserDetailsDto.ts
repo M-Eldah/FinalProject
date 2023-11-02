@@ -1,12 +1,14 @@
-export class UserDetailsDTO {
-    userName: string ="";
-    phone: string="";
-    email: string="";
-    bookmarks: UserChildBookmarkDTO[]|undefined;
-    notifications: UserChildNotificationDTO[]|undefined;
-    ratings: UserChildRatingDTO[]|undefined;
-    requests: UserChildRequestDTO[]|undefined;
-    services: UserChildServicesDTO[]|undefined;
+export interface UserDetailsDTO {
+    userName: string;
+    phone: string;
+    email: string;
+    location: string;
+    bookmarks: UserChildBookmarkDTO[];
+    notifications: UserChildNotificationDTO[];
+    ratings: UserChildRatingDTO[];
+    userRequests: UserChildRequestDTO[];
+    providerRequests: UserChildRequestDTO[];
+    services: UserChildServicesDTO[];
 }
 
 export interface UserChildBookmarkDTO {
@@ -35,6 +37,7 @@ export interface UserChildRequestDTO {
     serviceName: string | null;
     requestText: string;
     date: string;
+    status: string;
 }
 
 export interface UserChildServicesDTO {

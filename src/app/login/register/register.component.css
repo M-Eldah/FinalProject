@@ -1,4 +1,14 @@
 .LoginButton{
-    width: 35%;
+    width: 50%;
     height: 50px;
+}
+.buttonLeft{
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+    border-width: 0px;
+}
+.buttonRight{
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
+    border-width: 0px;
 }

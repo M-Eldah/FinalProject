@@ -11,6 +11,8 @@ export class UserComponent {
   menulength: number=screen.height-250;
   UserDetails?:UserDetailsDTO;
   constructor(private userService: UserService){}
+  x:number=1;
+
   ngOnInit(): void {
     this.userService.getUser().subscribe(
       {
@@ -23,5 +25,16 @@ export class UserComponent {
         },
       }     
     );
+  }
+  changeInfrence(i:number,e:Event){
+    this.x=i;
+    
+    const prev= document.getElementsByClassName("navItemactive")[0];
+    if(prev!=undefined)
+    prev.classList.replace("navItemactive","navItem");
+
+    
+    const ele = e.target as HTMLElement;
+    ele.classList.replace("navItem","navItemactive");
   }
 }

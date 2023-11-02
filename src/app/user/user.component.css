@@ -1,0 +1,17 @@
+.navItem{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border-width: 0px;
+    background-color: #e8eaea;
+}
+.navItem:hover{
+    background-color: #bababa;
+}
+.navItemactive{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    background-color: #e70e02;
+    color: aliceblue;
+}

@@ -17,22 +17,26 @@ export class UserService {
     return this.client.get<UserReadDto[]>("https://localhost:7012/GetAllUsers");
   }
   getUser():Observable<UserDetailsDTO> {
+    //
     let api_key = localStorage.getItem("Token");
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${api_key}`
-      });
+    });
+    //
     const requestOptions = { headers: headers };
     return this.client.get<UserDetailsDTO>(`https://localhost:7012/GetDetailsbyID`, requestOptions);
   }
   UpdateUser(UserDetails:UserUpdateDto):Observable<any> {
+    //
     let api_key = localStorage.getItem("Token");
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${api_key}`
       });
     const requestOptions = { headers: headers };
-    return this.client.post<string>(`https://localhost:7012/GetDetailsbyID`, UserDetails, requestOptions);
+    //
+    return this.client.put<string>(`https://localhost:7012/Update`, UserDetails, requestOptions);
   }
   logInUser(UserLogin:UserLoginDTO):Observable<any>{
     return this.client.post<string>(`https://localhost:7012/login`,UserLogin);

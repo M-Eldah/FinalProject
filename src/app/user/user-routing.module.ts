@@ -6,13 +6,7 @@ import { DetailComponent } from './detail/detail.component';
 const routes: Routes = [
   {
     path:"",
-    component:UserComponent,
-    children:[
-      {
-        path:"Details",
-        component:DetailComponent,
-      }
-    ]
+    component:UserComponent
   }
 ];
 

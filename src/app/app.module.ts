@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedcomponentModule } from './sharedcomponent/sharedcomponent.module';
 import { UserComponent } from './user/user.component';
 import { UserModule } from './user/user.module';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

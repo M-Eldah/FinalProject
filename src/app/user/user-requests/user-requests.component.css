@@ -29,3 +29,10 @@
     background-color: #c60202;
     color: aliceblue;
 }
+p{
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #e8eaea;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

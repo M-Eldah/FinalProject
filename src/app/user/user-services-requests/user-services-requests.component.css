@@ -1,0 +1,19 @@
+.card{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+}
+.card button{
+    height: 40px;
+    width: 200px;
+}
+label{
+    font-weight: bold;
+    padding-right: 10px;
+}
+p{
+    border-radius: 15px;
+    background-color: #e8eaea;
+    padding: 5px;
+}

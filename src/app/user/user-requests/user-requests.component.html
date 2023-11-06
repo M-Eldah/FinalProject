@@ -1,11 +1,11 @@
 <div>
     <div *ngFor="let User of userRequests" class="card">
-        <div >
-            <span class="align-self-end" style="width: fit-content; font-size: 30px; padding: 10px;">{{User?.serviceName}}</span>        
-            <span class="align-self-end status{{User.status}}" >{{User?.status}}</span>
+        <div class="d-flex justify-content-start">
+            <div class="align-self-end " style="width: fit-content; font-size: 30px; padding-right: 10px; vertical-align: bottom; line-height: 30px;">{{User?.serviceName}}</div>        
+            <div class="align-self-end status{{User.status}}" >{{User?.status}}</div>
         </div>
         <p>{{User?.requestText}}</p>
-        <p>{{User?.date}}</p>
+        <div>{{User?.date|date:'longDate'}}</div>
         <button class="btn MainButton">
                 Show Request
         </button>

@@ -1,0 +1,24 @@
+<div>
+    <div *ngFor="let User of userServices" class="card">
+        <div class="d-flex justify-content-start">
+            <div class="align-self-end" style="width: fit-content; font-size: 30px; padding-right: 10px; vertical-align: bottom; line-height: 30px;">{{User?.name}}</div>        
+            <div *ngIf="!User.approved" class="align-self-end status{{User.approved}}" >Waiting</div>
+            <div *ngIf="User.approved" class="align-self-end status{{User.approved}}" >Approved</div>
+        </div>
+        <div class="d-flex justify-content-start" >
+            <label>Price : </label>
+            <div style="padding-right: 10px;">{{User?.price}}</div>
+            <label>Rating : </label>
+            <div>{{User?.rating}}</div>
+        </div>
+        <div class="d-flex justify-content-start" >
+            <label>Location : </label>
+            <div>{{User?.location}}</div>
+        </div>
+        <label>Description</label>
+        <p>{{User?.description}}</p>
+        <button class="btn MainButton">
+                Show Service
+        </button>
+    </div>
+</div>

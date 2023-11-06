@@ -11,9 +11,13 @@ export class UserComponent {
   menulength: number=screen.height-250;
   UserDetails?:UserDetailsDTO;
   constructor(private userService: UserService){}
-  x:number=1;
+  x:number=0;
 
   ngOnInit(): void {
+    const IsLoggedIn = this.userService.IsLoggedIn();
+    console.log("Is Logged in = "+IsLoggedIn)
+    console.log("Is User =" + this.userService.IsUser())
+    console.log("Is Admin =" + this.userService.IsAdmin())
     this.userService.getUser().subscribe(
       {
         next:(SiteUSER:UserDetailsDTO)=>{

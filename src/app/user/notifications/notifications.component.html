@@ -1,0 +1,11 @@
+<div>
+    <div *ngFor="let User of Notifications" class="card">
+     <p>
+        {{User.text}}
+     </p>
+     <div>{{User?.date|date:'longDate'}}</div>
+     <button class="btn MainButton">
+        ShowRequest
+     </button>
+    </div>
+</div>

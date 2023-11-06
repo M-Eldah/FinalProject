@@ -7,7 +7,7 @@ export interface UserDetailsDTO {
     notifications: UserChildNotificationDTO[];
     ratings: UserChildRatingDTO[];
     userRequests: UserChildRequestDTO[];
-    providerRequests: UserChildRequestDTO[];
+    providerRequests: ProviderChildRequestDTO[];
     services: UserChildServicesDTO[];
 }
 
@@ -19,7 +19,7 @@ export interface UserChildBookmarkDTO {
 export interface UserChildNotificationDTO {
     id: number;
     text: string;
-    date: string;
+    date: Date;
     seen: boolean;
 }
 
@@ -28,7 +28,7 @@ export interface UserChildRatingDTO {
     serviceName: string;
     comment: string;
     rating: number;
-    date: string;
+    date: Date;
 }
 
 export interface UserChildRequestDTO {
@@ -36,7 +36,7 @@ export interface UserChildRequestDTO {
     serviceId: number | null;
     serviceName: string | null;
     requestText: string;
-    date: string;
+    date: Date;
     status: string;
 }
 
@@ -48,4 +48,14 @@ export interface UserChildServicesDTO {
     rating: number;
     description: string;
     approved: boolean;
+}
+
+export interface ProviderChildRequestDTO {
+    id: number;
+    serviceId: number | null;
+    serviceName: string | null;
+    requestText: string;
+    requesterName: string;
+    date: Date;
+    status: string;
 }

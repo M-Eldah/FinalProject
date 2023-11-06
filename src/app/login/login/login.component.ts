@@ -45,7 +45,10 @@ export class LoginComponent {
       {
         next:(Utoken:any)=>
         {
+          console.log(Utoken);
           this.helper.Store("Token",Utoken["usertoken"]);
+          this.helper.Store("UserId",Utoken["userclaims"][0]);
+          this.helper.Store("Claims",Utoken["userclaims"].slice(1,Utoken["userclaims"].length));
         },
         error:(error)=>{
           console.log("Api Call Failed",error)

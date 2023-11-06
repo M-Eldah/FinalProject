@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
-<div class="row">
-    <div class="d-flex flex-column p-3 col-2" [style.height.px]="menulength" style="background-color:#e8eaea ;">
+<div class="row" style="height: 92vh; width: 100%;">
+    <div class="d-flex flex-column p-3 col-2" style="background-color:#e8eaea ; height: 100%; ">
         <ul class="nav nav-pills flex-column mb-auto">
-          <li (click)="changeInfrence(0,$event)" class="navItem">
+          <li (click)="changeInfrence(0,$event)" class="navItemactive">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                 Details
           </li>
@@ -29,8 +29,11 @@
         </ul>
     </div>
     
-    <div class="col-10" *ngIf="UserDetails">
-      <app-userDetail [UserDetails]="UserDetails" *ngIf="x==1"></app-userDetail>
+    <div class="col-10" *ngIf="UserDetails" style="overflow: scroll; height: 100%;">
+      <app-userDetail [UserDetails]="UserDetails" *ngIf="x==0"></app-userDetail>
+      <app-user-services *ngIf="x==1" [userServices]="UserDetails.services"></app-user-services>
       <app-user-requests *ngIf="x==2" [userRequests]="UserDetails.userRequests"></app-user-requests>
+      <app-user-services-requests *ngIf="x==3" [userRequests]="UserDetails.providerRequests"></app-user-services-requests>
+      <app-notifications *ngIf="x==4" [Notifications]="UserDetails.notifications"></app-notifications>
     </div>
 </div>

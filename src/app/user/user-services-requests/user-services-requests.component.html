@@ -1,0 +1,18 @@
+<div>
+    <div *ngFor="let User of userRequests" class="card">
+        <div >
+            <div class="align-self-end" style="width: fit-content; font-size: 30px; padding-right: 10px; vertical-align: bottom; line-height: 30px;">{{User?.serviceName}}</div>
+        </div>
+        <div class="d-flex justify-content-start" >
+            <label>From : </label>
+            <div style="padding-right: 10px;">{{User?.requesterName}}</div>
+            <label>Date : </label>
+            <div>{{User?.date|date:'longDate'}}</div>
+        </div>
+        <label>Description</label>
+        <p>{{User?.requestText}}</p>
+        <button class="btn MainButton">
+            Show Request
+    </button>
+    </div>
+</div>

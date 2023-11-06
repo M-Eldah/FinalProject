@@ -6,23 +6,22 @@ import { UserDetailsDTO } from '../Types/Users/UserDetailsDto';
 import UserLoginDTO from '../Types/Users/UserLoginDto';
 import UserAddDTO from '../Types/Users/UserAddDto';
 import { UserUpdateDto } from '../Types/Users/UserUpdateDto';
-import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private client:HttpClient,private token:TokenService) { }
+  constructor(private client:HttpClient) { }
 
   getUsers():Observable<UserReadDto[]> {
     return this.client.get<UserReadDto[]>("https://localhost:7012/GetAllUsers");
   }
   getUser():Observable<UserDetailsDTO> {
-    const requestOptions = { headers: this.token.RequestOption() };
+    const requestOptions = { headers: this.RequestOption() };
     return this.client.get<UserDetailsDTO>(`https://localhost:7012/GetDetailsbyID`, requestOptions);
   }
   UpdateUser(UserDetails:UserUpdateDto):Observable<any> {
-    const requestOptions = { headers: this.token.RequestOption() };
+    const requestOptions = { headers: this.RequestOption() };
     return this.client.put<string>(`https://localhost:7012/Update`, UserDetails, requestOptions);
   }
   logInUser(UserLogin:UserLoginDTO):Observable<any>{
@@ -75,5 +74,14 @@ export class UserService {
     localStorage.removeItem("UserId");
     localStorage.removeItem("Token");
     localStorage.removeItem("Claims");
+  }
+  RequestOption(): HttpHeaders
+  {
+    let api_key = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${api_key}`
+    });
+    return headers;
   }
 }

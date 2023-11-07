@@ -11,20 +11,29 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent {
   Registerform=new FormGroup({
-    userName: new FormControl<string>('',[]
+    userName: new FormControl<string>('',[
+      Validators.required,
+      Validators.minLength(3)
+    ]
     ),
     password: new FormControl<string>('',[
-      Validators.minLength(8)
+      Validators.minLength(8),
+      Validators.required
     ]
     ),
     phone: new FormControl<string>('',[
+      Validators.minLength(12),
+      Validators.required
     ]
     ),
-    Email: new FormControl<string>('',[
-      Validators.email
+    email: new FormControl<string>('',[
+      Validators.email,
+      Validators.required
     ]
     ),
-    Location: new FormControl<string>('',[]
+    Location: new FormControl<string>('',[
+      Validators.required
+    ]
     )
 
   })
@@ -37,7 +46,7 @@ export class RegisterComponent {
         userName:this.Registerform.value.userName!,
         password:this.Registerform.value.password!,
         phone:this.Registerform.value.phone!,
-        email:this.Registerform.value.Email!,
+        email:this.Registerform.value.email!,
         location:this.Registerform.value.Location!,
       }
       console.log(UserLogin)

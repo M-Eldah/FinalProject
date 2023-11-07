@@ -20,28 +20,74 @@
               <!-- Email input -->
               <div class="form-outline mb-4">
                   <input type="text" id="loginName" class="form-control" formControlName="userName"/>
-                  <label class="form-label" >Email or username</label>
+                  <label class="form-label" >User Name</label>
+                  <P class="Error"
+                  *ngIf="Registerform.controls.userName.touched 
+                  && Registerform.controls.userName.errors?.['required']">
+                  This field is required</P>
+                  <P class="Error"
+                  *ngIf="Registerform.controls.userName.touched 
+                  &&Registerform.controls.userName.errors?.['minlength']">
+                  Minimum length is 3 char
+                  </P>
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                   <input type="password" id="loginPassword" class="form-control" formControlName="password"/>
                   <label class="form-label" >Password</label>
+                  <P class="Error"
+                  *ngIf="Registerform.controls.password.touched 
+                  && Registerform.controls.password.errors?.['required']">
+                  This field is required</P>
+                  <P class="Error"
+                  *ngIf="Registerform.controls.password.touched 
+                  &&Registerform.controls.password.errors?.['minlength']">
+                  Minimum length is 8 char </P>
                 </div>
                 <!-- Phone input -->
                 <div class="form-outline mb-4">
                     <input type="string" class="form-control" formControlName="phone"/>
                     <label class="form-label" >Phone</label>
+                    <P class="Error"
+                  *ngIf="Registerform.controls.phone.touched 
+                  && Registerform.controls.phone.errors?.['required']">
+                  This field is required</P>
+                  <P class="Error"
+                  *ngIf="Registerform.controls.phone.touched 
+                  &&Registerform.controls.phone.errors?.['minlength']">
+                  Minimum length is 12 char </P>
                   </div>
-                  <!-- Email input -->
+                <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="email" class="form-control" formControlName="Email"/>
+                    <input type="email" class="form-control" formControlName="email"/>
                     <label class="form-label" >Email</label>
+                    <P class="Error"
+                  *ngIf="Registerform.controls.email.touched 
+                  && Registerform.controls.email.errors?.['required']">
+                  This field is required</P>
+                  <P class="Error"
+                    *ngIf="Registerform.controls.email.touched 
+                    && Registerform.controls.email.errors?.['email']">
+                    email is invalid
+                  </P>
                   </div>
-                  <!-- Location input -->
+                <!-- Location input -->
                 <div class="form-outline mb-4">
-                    <input type="text" id="loginLocation" class="form-control" formControlName="Location"/>
-                    <label class="form-label" >Location</label>
-                  </div>
+                    <!-- <input type="text" id="loginLocation" class="form-control" formControlName="Location"/> -->
+                    <label class="form-label" >Location</label><br>
+                    <select formControlName="Location">
+                      <option>
+                        Alexandria
+                      </option>
+                      <option>
+                        Cairo
+                      </option>
+                    </select>
+                    <P class="Error"
+                  *ngIf="Registerform.controls.Location.touched 
+                  && Registerform.controls.Location.errors?.['required']">
+                  This field is required</P>
+                </div>
                 <!-- 2 column grid layout -->
                 <div class="row mb-4">
                   <div class="col-md-6 d-flex justify-content-center">
@@ -53,7 +99,7 @@
                   </div>
               </div>
               <div class="form-outline mb-4 d-flex justify-content-center">
-                  <button (click)="Login()" class="btn btn-primary btn-block mb-4 w-25 MainButton">Sign in</button>
+                  <button [disabled]="Registerform.invalid" (click)="Login()" class="btn btn-primary btn-block mb-4 w-25 MainButton">Sign up</button>
               </div>     
           </div>
         <!-- Submit button -->

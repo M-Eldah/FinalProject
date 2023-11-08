@@ -20,12 +20,26 @@
               <!-- Email input -->
               <div class="form-outline mb-4">
                   <input type="email" id="loginName" class="form-control" formControlName="userName"/>
-                  <label class="form-label" for="loginName">Email or username</label>
+                  <label class="form-label" for="loginName">UserName</label>
+                  <P class="Error"
+                  *ngIf="Loginform.controls.userName.touched 
+                  && Loginform.controls.userName.errors?.['required']">
+                  This field is required</P>
+                  <p *ngIf="ErrorCode==0" class="Error">
+                    This UserName doesn't exist
+                  </p>
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                   <input type="password" id="loginPassword" class="form-control" formControlName="password"/>
                   <label class="form-label" for="loginPassword">Password</label>
+                  <P class="Error"
+                  *ngIf="Loginform.controls.password.touched 
+                  && Loginform.controls.password.errors?.['required']">
+                  This field is required</P>
+                  <p *ngIf="ErrorCode==1" class="Error">
+                    Password is incorrect
+                  </p>
                 </div>
                 <!-- 2 column grid layout -->
                 <div class="row mb-4">
@@ -42,8 +56,10 @@
                   </div>
               </div>
               <div class="form-outline mb-4 d-flex justify-content-center">
-                  <button (click)="Login()" class="btn btn-primary btn-block mb-4 w-25 MainButton">Sign in</button>
-              </div>     
+                  <button (click)="Login()" [disabled]="Loginform.invalid" class="btn btn-primary btn-block mb-4 w-25 MainButton">Sign in</button>
+              </div>
+              
+                 
           </div>
         <!-- Submit button -->
       </form>

@@ -12,3 +12,7 @@
     border-bottom-right-radius: 500px;
     border-width: 0px;
 }
+.Error{
+    color: rgb(235, 25, 25);
+    font-weight: bold;
+}

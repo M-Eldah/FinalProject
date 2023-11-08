@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HelperService } from 'src/app/services/helper.service';
 import { UserService } from 'src/app/services/user.service';
 import { UserDetailsDTO } from 'src/app/Types/Users/UserDetailsDto';
@@ -11,10 +11,15 @@ import UserLoginDTO from 'src/app/Types/Users/UserLoginDto';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  ErrorCode : number=101;
   Loginform=new FormGroup({
-    userName: new FormControl<string>('',[]
+    userName: new FormControl<string>('',[
+      Validators.required
+    ]
     ),
-    password: new FormControl<string>('',[]
+    password: new FormControl<string>('',[
+      Validators.required
+    ]
     )
   })
 
@@ -51,7 +56,7 @@ export class LoginComponent {
           this.helper.Store("Claims",Utoken["userclaims"].slice(1,Utoken["userclaims"].length));
         },
         error:(error)=>{
-          console.log("Api Call Failed",error)
+          this.ErrorCode=error["status"];
         },
       }
     )

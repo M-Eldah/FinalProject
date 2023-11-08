@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Goverment from 'src/app/Types/Goverment';
 import UserAddDTO from 'src/app/Types/Users/UserAddDto';
 import { HelperService } from 'src/app/services/helper.service';
+import { LocationsListService } from 'src/app/services/locations-list.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  goverments:Goverment[] | undefined;
   Registerform=new FormGroup({
     userName: new FormControl<string>('',[
       Validators.required,
@@ -38,8 +41,12 @@ export class RegisterComponent {
 
   })
 
-  constructor(private helper: HelperService, private user: UserService)
+  constructor(private helper: HelperService, private user: UserService,private Loc:LocationsListService)
   {}
+  ngOnInit(): void {
+    this.goverments=this.Loc.Goverments;
+    console.log(this.goverments);
+  }
   Login():void{
     if(this.Registerform.invalid) return;
       const UserLogin : UserAddDTO={ 

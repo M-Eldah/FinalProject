@@ -2,21 +2,41 @@
     <div class="w-100 p-3 ">
         <!-- Email input -->
         <div class="form-outline mb-4">
-            <input type="email" id="loginName" class="form-control" formControlName="Mail" />
+            <input type="email" class="form-control" formControlName="Mail" />
             <label class="form-label" for="loginName">Email</label>
+            <P class="Error"
+            *ngIf="Updateform.controls.Mail.touched 
+            && Updateform.controls.Mail.errors?.['required']">
+            This field is required</P>
+            <P class="Error"
+            *ngIf="Updateform.controls.Mail.touched 
+            && Updateform.controls.Mail.errors?.['email']">
+            Incorrect EMail</P>
         </div>
         <!-- Phone input -->
         <div class="form-outline mb-4">
-            <input type="text" id="loginPassword" class="form-control" formControlName="Phone" />
+            <input type="text" class="form-control" formControlName="Phone" />
             <label class="form-label" for="loginPassword">Phone</label>
+            <P class="Error"
+            *ngIf="Updateform.controls.Mail.touched 
+            && Updateform.controls.Mail.errors?.['required']">
+             This field is required</P>
         </div>
         <!-- Location input -->
-         <div class="form-outline mb-4">
-            <input type="text" id="loginPassword" class="form-control" formControlName="Location" />
-            <label class="form-label" for="loginPassword">Location</label>
+        <div class="form-outline mb-4">
+            <label class="form-label" >Location</label><br>
+            <select formControlName="Location">
+              <option *ngFor="let G of goverments">
+                {{G.governorate_name_en}}
+              </option>
+            </select>
+            <P class="Error"
+          *ngIf="Updateform.controls.Location.touched 
+          && Updateform.controls.Location.errors?.['required']">
+          This field is required</P>
         </div>
         <div class="form-outline mb-4 d-flex justify-content-center">
-            <button (click)="Update()"  class="btn btn-primary btn-block mb-4 w-25 MainButton">Update Details</button>
+            <button (click)="Update()" [disabled]="Updateform.invalid"  class="btn btn-primary btn-block mb-4 w-25 MainButton">Update Details</button>
         </div>     
     </div>
   <!-- Submit button -->

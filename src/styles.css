@@ -11,3 +11,7 @@
 .MainButton:active{
     background-color: #8a0700;
 }
+.MainButton:disabled{
+    background-color: #510b07;
+    color: gray;
+}

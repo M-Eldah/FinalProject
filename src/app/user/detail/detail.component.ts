@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDetailsDTO } from 'src/app/Types/Users/UserDetailsDto';
 import { HelperService } from 'src/app/services/helper.service';
 import { UserService } from 'src/app/services/user.service';
 import { UserUpdateDto } from 'src/app/Types/Users/UserUpdateDto';
+import Goverment from 'src/app/Types/Goverment';
+import { LocationsListService } from 'src/app/services/locations-list.service';
 
 @Component({
   selector: 'app-userDetail',
@@ -14,15 +16,23 @@ export class DetailComponent implements OnInit {
   @Input() UserDetails?: UserDetailsDTO;
   name:string="Mail";
   Updateform=new FormGroup({
-    Phone: new FormControl<string>('',[]
+    Phone: new FormControl<string>('',[
+      Validators.required
+    ]
     ),
-    Mail: new FormControl<string>('',[]
+    Mail: new FormControl<string>('',[
+      Validators.email,
+      Validators.required
+    ]
     ),
-    Location: new FormControl<string>('',[]
+    Location: new FormControl<string>('',[
+      Validators.required
+    ]
     )
   })
+  goverments: Goverment[]|undefined;
   
-  constructor(private helper: HelperService, private user: UserService)
+  constructor(private helper: HelperService, private user: UserService, private Loc: LocationsListService)
   {}
 
   ngOnInit(): void {
@@ -35,6 +45,9 @@ export class DetailComponent implements OnInit {
       Location: new FormControl<string>(this.UserDetails!.location,[]
       )
     })
+   
+      this.goverments=this.Loc.Goverments;
+      console.log(this.goverments);
   }
 
   Test():void{

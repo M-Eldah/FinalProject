@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 export class UserComponent {
   menulength: number=screen.height-250;
   UserDetails?:UserDetailsDTO;
-  constructor(private userService: UserService){}
+  constructor(public userService: UserService){}
   x:number=0;
 
   ngOnInit(): void {

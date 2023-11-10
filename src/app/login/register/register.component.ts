@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  DuplicateUsername:boolean = false;
   goverments:Goverment[] | undefined;
   Registerform=new FormGroup({
     userName: new FormControl<string>('',[
@@ -61,11 +62,23 @@ export class RegisterComponent implements OnInit {
       {
         next:(Utoken:any)=>
         {
-          console.log(Utoken["usertoken"]);
-          this.helper.Store("Token",Utoken["usertoken"]);
+          const RememberMe=document.getElementById("loginCheck") as HTMLInputElement
+          if(RememberMe.checked==true)
+          {
+            this.helper.Store("Token",Utoken["usertoken"]);
+            this.helper.Store("UserId",Utoken["userclaims"][0]);
+            this.helper.Store("Claims",Utoken["userclaims"].slice(1,Utoken["userclaims"].length));
+          }
+          else
+          {
+            this.helper.StoreSession("Token",Utoken["usertoken"]);
+            this.helper.StoreSession("UserId",Utoken["userclaims"][0]);
+            this.helper.StoreSession("Claims",Utoken["userclaims"].slice(1,Utoken["userclaims"].length));
+          }
+          this.helper.Redirect("/User");
         },
         error:(error)=>{
-          console.log("Api Call Failed",error)
+          this.DuplicateUsername= error["error"][0]["code"]=="DuplicateUserName";
         },
       }
     )

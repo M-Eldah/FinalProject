@@ -2,31 +2,32 @@
     <div class="w-100 p-3 ">
         <!-- Email input -->
         <div class="form-outline mb-4">
-            <input type="email" class="form-control" formControlName="Mail" />
-            <label class="form-label" for="loginName">Email</label>
+            <input id="Mail" type="email" class="form-control" formControlName="Mail"/>
+            <label class="Mail" >Email</label>
             <P class="Error"
-            *ngIf="Updateform.controls.Mail.touched 
-            && Updateform.controls.Mail.errors?.['required']">
-            This field is required</P>
-            <P class="Error"
+          *ngIf="Updateform.controls.Mail.touched 
+          && Updateform.controls.Mail.errors?.['required']">
+          This field is required</P>
+          <P class="Error"
             *ngIf="Updateform.controls.Mail.touched 
             && Updateform.controls.Mail.errors?.['email']">
-            Incorrect EMail</P>
-        </div>
+            Email is invalid
+          </P>
+          </div>
         <!-- Phone input -->
-        <div class="form-outline mb-4">
+        <div id="form" class="form-outline mb-4">
             <input type="text" class="form-control" formControlName="Phone" />
             <label class="form-label" for="loginPassword">Phone</label>
             <P class="Error"
-            *ngIf="Updateform.controls.Mail.touched 
-            && Updateform.controls.Mail.errors?.['required']">
+            *ngIf="Updateform.controls.Phone.touched 
+            && Updateform.controls.Phone.errors?.['required']">
              This field is required</P>
         </div>
         <!-- Location input -->
         <div class="form-outline mb-4">
             <label class="form-label" >Location</label><br>
             <select formControlName="Location">
-              <option *ngFor="let G of goverments">
+              <option  *ngFor="let G of goverments" value="{{G.governorate_name_en}}">
                 {{G.governorate_name_en}}
               </option>
             </select>

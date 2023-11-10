@@ -30,58 +30,109 @@ export class UserService {
   RegisterUser(UserRegister:UserAddDTO):Observable<any>{
     return this.client.post<string>(`https://localhost:7012/User/Register`,UserRegister);
   }
+
   IsLoggedIn():Boolean{
-    var check:Boolean=false;
-    if(localStorage.getItem("Token")!=null)
+    if(sessionStorage.getItem("Token")!=null)
     {
-      const expiry = (JSON.parse(atob(localStorage.getItem("Token")!.split('.')[1]))).exp;
-      console.log(expiry);
-      if((Math.floor((new Date).getTime() / 1000)) <= expiry)
-      {
-        check=true;
-      }
+      return true;
     }
-    return check;
+    if(localStorage.getItem("Token")==null)
+    {
+      return false;
+    }
+    const expiry = (JSON.parse(atob(localStorage.getItem("Token")!.split('.')[1]))).exp;
+    if((Math.floor((new Date).getTime() / 1000)) > expiry)
+    {
+      this.Logout();
+      return false;
+    }
+    return true;
   }
   IsUser():Boolean{
-    var check:Boolean=false;
     if(localStorage.getItem("Claims")!=null&&localStorage.getItem("Claims")?.includes("User"))
     {
-      check=true;
+      return true;
     }
-    return check;
+    if(sessionStorage.getItem("Claims")!=null&&sessionStorage.getItem("Claims")?.includes("User"))
+    {
+      return true;
+    }
+    return false;
   }
   IsAdmin():Boolean{
-    var check:Boolean=false;
     if(localStorage.getItem("Claims")!=null&&localStorage.getItem("Claims")?.includes("Admin"))
     {
-      check=true;
+      return true;
     }
-    return check;
+    if(sessionStorage.getItem("Claims")!=null&&sessionStorage.getItem("Claims")?.includes("Admin"))
+    {
+      return true;
+    }
+    return false;
   }
   IsManger():Boolean{
-    var check:Boolean=false;
     if(localStorage.getItem("Claims")!=null&&localStorage.getItem("Claims")?.includes("Manger"))
     {
-      check=true;
+      return true;
     }
-    return check;
+    if(sessionStorage.getItem("Claims")!=null&&sessionStorage.getItem("Claims")?.includes("Manger"))
+    {
+      return true;
+    }
+    return false;
   }
   GetUserId():String|null{
-    return localStorage.getItem("UserId") ;
+    if(localStorage.getItem("UserId")!=null)
+    {
+      return localStorage.getItem("UserId") ;
+    }
+    else
+    {
+      return sessionStorage.getItem("UserId") ;
+    }
+    
   }
   Logout():void{
-    localStorage.removeItem("UserId");
-    localStorage.removeItem("Token");
-    localStorage.removeItem("Claims");
+    if(localStorage.getItem("UserId")!=null)
+    {
+      localStorage.removeItem("UserId");
+      localStorage.removeItem("Token");
+      localStorage.removeItem("Claims");
+    }
+    else
+    {
+      sessionStorage.removeItem("UserId");
+      sessionStorage.removeItem("Token");
+      sessionStorage.removeItem("Claims");
+    }
+   
   }
   RequestOption(): HttpHeaders
   {
-    let api_key = localStorage.getItem("Token");
+    var api_key;
+    if(localStorage.getItem("Token")!=null)
+    {
+      api_key = localStorage.getItem("Token");
+    }else
+    {
+      api_key = sessionStorage.getItem("Token");
+    }
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${api_key}`
     });
     return headers;
+  }
+  DeleteService(Id:Number){
+    return this.client.delete(`https://localhost:7012/api/Service/${Id}`);
+  }
+  DeleteRequest(Id:Number){
+    return this.client.delete(`https://localhost:7012/api/Request/${Id}`);
+  }
+  DeleteNotification(Id:Number){
+    return this.client.delete(`https://localhost:7012/api/Notification/${Id}`);
+  }
+  DeleteBookMark(Id:Number){
+
   }
 }

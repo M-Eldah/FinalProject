@@ -30,6 +30,10 @@
                   &&Registerform.controls.userName.errors?.['minlength']">
                   Minimum length is 3 char
                   </P>
+                  <P class="Error"
+                  *ngIf="DuplicateUsername">
+                  Username is already in use
+                  </P>
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
@@ -76,7 +80,7 @@
                     <!-- <input type="text" id="loginLocation" class="form-control" formControlName="Location"/> -->
                     <label class="form-label" >Location</label><br>
                     <select formControlName="Location">
-                      <option *ngFor="let G of goverments">
+                      <option *ngFor="let G of goverments" value="{{G.governorate_name_en}}">
                         {{G.governorate_name_en}}
                       </option>
                     </select>
@@ -90,7 +94,7 @@
                   <div class="col-md-6 d-flex justify-content-center">
                     <!-- Checkbox -->
                     <div class="form-check mb-3 mb-md-0">
-                      <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                      <input class="form-check-input" type="checkbox" value="" id="loginCheck" />
                       <label class="form-check-label" for="loginCheck"> Remember me </label>
                     </div>
                   </div>

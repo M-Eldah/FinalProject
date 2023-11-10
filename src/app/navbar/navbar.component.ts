@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { UserService } from '../services/user.service';
+import { HelperService } from '../services/helper.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,14 +10,14 @@ import { UserService } from '../services/user.service';
 })
 export class NavbarComponent {
   LoggedIn=this.user.IsLoggedIn()
-  constructor(public user:UserService, public router:Router) {
+  constructor(public user:UserService, public helper:HelperService) {
   }
   LogOut(){
     this.user.Logout();
     window.location.reload();
   }
   LogIn(){
-    this.router.navigate(['/Login']);
+    this.helper.Redirect('/Login');
     return false;
   }
   

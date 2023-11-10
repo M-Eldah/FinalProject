@@ -14,38 +14,41 @@ import { LocationsListService } from 'src/app/services/locations-list.service';
 })
 export class DetailComponent implements OnInit {
   @Input() UserDetails?: UserDetailsDTO;
-  name:string="Mail";
   Updateform=new FormGroup({
     Phone: new FormControl<string>('',[
-      Validators.required
     ]
     ),
-    Mail: new FormControl<string>('',[
-      Validators.email,
-      Validators.required
-    ]
+    Mail: new FormControl<string>('',
+      [
+      ] 
     ),
     Location: new FormControl<string>('',[
-      Validators.required
     ]
     )
   })
   goverments: Goverment[]|undefined;
   
-  constructor(private helper: HelperService, private user: UserService, private Loc: LocationsListService)
+  constructor(private user: UserService, private Loc: LocationsListService)
   {}
 
   ngOnInit(): void {
     console.log(this.UserDetails)
     this.Updateform=new FormGroup({
-      Phone: new FormControl<string>(this.UserDetails!.phone,[]
+      Phone: new FormControl<string>(this.UserDetails!.phone,[
+        Validators.required
+      ]
       ),
-      Mail: new FormControl<string>(this.UserDetails!.email,[]
+      Mail: new FormControl<string>(this.UserDetails!.email,[
+        Validators.email,
+        Validators.required
+      ]
       ),
-      Location: new FormControl<string>(this.UserDetails!.location,[]
+      Location: new FormControl<string>(this.UserDetails!.location,[
+        Validators.required
+      ]
       )
     })
-   
+    this.Updateform.controls.Location.value!=this.UserDetails!.phone
       this.goverments=this.Loc.Goverments;
       console.log(this.goverments);
   }

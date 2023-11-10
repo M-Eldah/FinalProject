@@ -1,5 +1,5 @@
 <div>
-    <div *ngFor="let User of Notifications" class="card">
+    <div #Parent *ngFor="let User of Notifications" class="card">
      <p>
         {{User.text}}
      </p>
@@ -7,5 +7,9 @@
      <button class="btn MainButton">
         ShowRequest
      </button>
+     <br>
+     <button class="btn MainButton" (click)="DeleteNotification(Parent,User)">
+      Delete
+  </button>
     </div>
 </div>

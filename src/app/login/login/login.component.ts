@@ -27,18 +27,6 @@ export class LoginComponent {
   {}
  
   UserDetails?:UserDetailsDTO;
-  ngOnInit(): void {
-    this.user.getUser().subscribe(
-      {
-        next:(SiteUSER:UserDetailsDTO)=>{
-          console.log(SiteUSER);
-        },
-        error:(error)=>{
-          console.log("Api Call Failed",error)
-        },
-      }     
-    );
-  }
   Login():void{
     if(this.Loginform.invalid) return;
       const UserLogin : UserLoginDTO={ 
@@ -50,10 +38,20 @@ export class LoginComponent {
       {
         next:(Utoken:any)=>
         {
-          console.log(Utoken);
-          this.helper.Store("Token",Utoken["usertoken"]);
-          this.helper.Store("UserId",Utoken["userclaims"][0]);
-          this.helper.Store("Claims",Utoken["userclaims"].slice(1,Utoken["userclaims"].length));
+          const RememberMe=document.getElementById("loginCheck") as HTMLInputElement
+          if(RememberMe.checked==true)
+          {
+            this.helper.Store("Token",Utoken["usertoken"]);
+            this.helper.Store("UserId",Utoken["userclaims"][0]);
+            this.helper.Store("Claims",Utoken["userclaims"].slice(1,Utoken["userclaims"].length));
+          }
+          else
+          {
+            this.helper.StoreSession("Token",Utoken["usertoken"]);
+            this.helper.StoreSession("UserId",Utoken["userclaims"][0]);
+            this.helper.StoreSession("Claims",Utoken["userclaims"].slice(1,Utoken["userclaims"].length));
+          }
+          this.helper.Redirect("/User");
         },
         error:(error)=>{
           this.ErrorCode=error["status"];

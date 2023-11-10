@@ -28,7 +28,9 @@
           </li>
         </ul>
     </div>
-    
+    <h1 class="col-10" *ngIf="!userService.IsLoggedIn()">
+        Please Log in to view your profile
+    </h1>
     <div class="col-10" *ngIf="UserDetails" style="overflow: scroll; height: 100%;">
       <app-userDetail [UserDetails]="UserDetails" *ngIf="x==0"></app-userDetail>
       <app-user-services *ngIf="x==1" [userServices]="UserDetails.services"></app-user-services>
